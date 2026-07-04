@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Neural Networks from First Principles | Brien Ihuka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#16233D;--paper:#F6F4EC;--paper-alt:#EDE8D9;--slate:#5B6472;--brass:#A97C34;--brass-dark:#8A6527;--green:#33513F;--rule:#D8D1BC;--max:820px;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans', sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Source Serif 4', serif;color:var(--ink);margin:0 0 0.4em 0;font-weight:600;letter-spacing:-0.01em;}
+a{color:var(--brass-dark);}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+.eyebrow{font-family:'IBM Plex Mono', monospace;text-transform:uppercase;letter-spacing:0.14em;font-size:0.72rem;color:var(--brass-dark);font-weight:500;}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(246,244,236,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;}
+.back-link{font-family:'IBM Plex Mono', monospace;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;color:var(--slate);}
+.back-link:hover{color:var(--ink);}
+.nav-name{font-family:'Source Serif 4', serif;font-weight:600;font-size:1.02rem;}
+.case-hero{padding:56px 0 40px;border-bottom:1px solid var(--rule);
+  background:repeating-linear-gradient(to bottom, transparent, transparent 37px, rgba(22,35,61,0.05) 37px, rgba(22,35,61,0.05) 38px);}
+.case-hero h1{font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.1;margin-top:12px;}
+.case-hero .subtitle{color:var(--slate);font-size:1.05rem;max-width:56ch;margin-top:6px;}
+.meta-row{display:flex;gap:26px;flex-wrap:wrap;margin-top:28px;padding-top:18px;border-top:1px solid var(--rule);}
+.meta-row div{font-family:'IBM Plex Mono', monospace;font-size:0.74rem;color:var(--slate);}
+.meta-row strong{display:block;color:var(--ink);font-size:0.85rem;margin-bottom:2px;}
+section{padding:44px 0;border-bottom:1px solid var(--rule);}
+section:last-of-type{border-bottom:none;}
+section h2{font-size:1.4rem;margin-bottom:14px;}
+section p{color:var(--slate);max-width:68ch;}
+section p + p{margin-top:1em;}
+figure{margin:22px 0;}
+figure img{width:100%;height:auto;border:1px solid var(--rule);display:block;background:#fff;}
+figcaption{font-family:'IBM Plex Mono', monospace;font-size:0.74rem;color:var(--slate);margin-top:8px;text-align:center;}
+.callout{background:var(--paper-alt);border:1px solid var(--rule);padding:18px 22px;margin:18px 0;}
+.callout p{color:var(--ink);margin:0;font-size:0.94rem;}
+.qa{border-left:3px solid var(--brass);padding-left:18px;margin:18px 0;}
+.qa .q{font-weight:600;margin-bottom:6px;color:var(--ink);}
+.qa .a{color:var(--slate);font-size:0.94rem;}
+table.compare{width:100%;border-collapse:collapse;margin:18px 0;}
+table.compare th, table.compare td{border:1px solid var(--rule);padding:10px 14px;text-align:left;font-size:0.9rem;}
+table.compare th{background:var(--paper-alt);font-family:'IBM Plex Mono', monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--green);}
+.take-away{background:var(--ink);color:var(--paper);}
+.take-away h2{color:var(--paper);}
+.take-away .eyebrow{color:#D8B77E;}
+.take-away p{color:#C7CCD8;}
+footer{padding:26px 0;text-align:center;font-family:'IBM Plex Mono', monospace;font-size:0.72rem;color:var(--slate);background:var(--ink);}
+@media (max-width:600px){ .meta-row{gap:16px;} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="back-link">&larr; Back to portfolio</a>
+    <div class="nav-name">Brien Ihuka</div>
+  </div>
+</header>
+
+<section class="case-hero">
+  <div class="wrap">
+    <span class="eyebrow">Applied ML Fundamentals</span>
+    <h1>Neural Networks from First Principles</h1>
+    <p class="subtitle">Building the forward pass, parameter counting, and gradient descent by hand — to understand what's actually happening before treating deep learning libraries as a black box.</p>
+    <div class="meta-row">
+      <div><strong>Tools</strong>Python, NumPy, PyTorch, Matplotlib</div>
+      <div><strong>Type</strong>Applied fundamentals lab</div>
+      <div><strong>Focus</strong>Forward pass, parameters, optimization</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Starting at a single neuron</h2>
+    <p>Every layer of a neural network reduces to the same base computation: a weighted sum of inputs plus a bias, <em>z = W&middot;x + b</em>, passed through an activation function. Working through this by hand for both sigmoid and ReLU activations on the same input made the difference between them concrete rather than abstract.</p>
+    <div class="qa">
+      <div class="q">What changes between sigmoid and ReLU on the same input?</div>
+      <div class="a">Sigmoid compresses any input into the range (0, 1) and always produces a non-zero output; ReLU passes positive values through unchanged and zeroes out anything negative. That difference compounds across layers — sigmoid's gradients shrink for large inputs (the vanishing-gradient problem), which slows learning in deep networks, while ReLU avoids that on its positive side and lets gradients flow more directly. The choice of activation isn't cosmetic — it shapes what the network can learn and how efficiently it learns it.</div>
+    </div>
+    <div class="qa">
+      <div class="q">What role does the bias play?</div>
+      <div class="a">The bias shifts the activation threshold — as it grows large and positive, the neuron fires at maximum regardless of input; as it goes very negative, the neuron is permanently silenced. Unlike a hyperparameter such as learning rate, the bias is a parameter: it's learned via gradient descent along with the weights, not fixed before training.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Scaling up: the forward pass and parameter counting</h2>
+    <p>The same computation extends to a full network by stacking matrix multiplications layer by layer, with careful attention to matrix shapes — a transposed matrix is one of the most common silent bugs in this kind of code. Counting parameters by hand for a small 10&rarr;5&rarr;3&rarr;1 network and then verifying the count in PyTorch reinforced how quickly parameter count grows: it scales roughly quadratically with layer width, since every neuron in one layer connects to every neuron in the next.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Training dynamics: batch size and learning rate</h2>
+    <p>With the architecture in place, the next question was how the network actually learns. I trained the same model under three gradient descent variants — full-batch, stochastic (batch size 1), and mini-batch — on a synthetic binary classification task, to see how batch size affects the shape of the loss curve.</p>
+    <figure>
+      <img src="images/nn-gd-variants.png" alt="Line chart comparing training and validation loss curves for batch gradient descent, stochastic gradient descent, and mini-batch gradient descent over 40 epochs">
+      <figcaption>Training and validation loss across 40 epochs for batch, stochastic, and mini-batch gradient descent.</figcaption>
+    </figure>
+    <p>Then, holding batch size constant, I swept three learning rates to see the classic trade-off between speed and stability play out directly.</p>
+    <figure>
+      <img src="images/nn-lr-sweep.png" alt="Line chart comparing training and validation loss curves for three different learning rates: 0.001, 0.01, and 0.5">
+      <figcaption>Training and validation loss for learning rates of 0.001, 0.01, and 0.5.</figcaption>
+    </figure>
+    <div class="callout">
+      <p><strong>What the sweep showed:</strong> batch gradient descent produced the smoothest curve since it averages the gradient over every sample; stochastic gradient descent was the noisiest, since each update reacts to a single data point. On the learning rate side, too high a rate caused the loss to oscillate or diverge instead of settling, while too low a rate converged reliably but slowly — the same gradient direction, just a mismatched step size.</p>
+    </div>
+  </div>
+</section>
+
+<section class="take-away">
+  <div class="wrap">
+    <span class="eyebrow">Takeaway</span>
+    <h2>Why work through this by hand at all</h2>
+    <p>It's easy to call <code>model.fit()</code> without knowing what's underneath it. Rebuilding the forward pass, the parameter count, and the optimization loop from scratch turns "the model isn't converging" from a mystery into a diagnosable problem — is it the activation choice, the learning rate, the batch size, or the architecture itself? That's the difference between using a library and actually understanding the tool.</p>
+  </div>
+</section>
+
+<footer>&copy; 2026 Brien Ihuka</footer>
+
+</body>
+</html>

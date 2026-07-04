@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Demand Forecasting with Prophet | Brien Ihuka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* --- shared case study tokens --- */
+:root{--ink:#16233D;--paper:#F6F4EC;--paper-alt:#EDE8D9;--slate:#5B6472;--brass:#A97C34;--brass-dark:#8A6527;--green:#33513F;--rule:#D8D1BC;--max:820px;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans', sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Source Serif 4', serif;color:var(--ink);margin:0 0 0.4em 0;font-weight:600;letter-spacing:-0.01em;}
+a{color:var(--brass-dark);}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+.eyebrow{font-family:'IBM Plex Mono', monospace;text-transform:uppercase;letter-spacing:0.14em;font-size:0.72rem;color:var(--brass-dark);font-weight:500;}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(246,244,236,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;}
+.back-link{font-family:'IBM Plex Mono', monospace;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;color:var(--slate);}
+.back-link:hover{color:var(--ink);}
+.nav-name{font-family:'Source Serif 4', serif;font-weight:600;font-size:1.02rem;}
+.case-hero{padding:56px 0 40px;border-bottom:1px solid var(--rule);
+  background:repeating-linear-gradient(to bottom, transparent, transparent 37px, rgba(22,35,61,0.05) 37px, rgba(22,35,61,0.05) 38px);}
+.case-hero h1{font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.1;margin-top:12px;}
+.case-hero .subtitle{color:var(--slate);font-size:1.05rem;max-width:56ch;margin-top:6px;}
+.meta-row{display:flex;gap:26px;flex-wrap:wrap;margin-top:28px;padding-top:18px;border-top:1px solid var(--rule);}
+.meta-row div{font-family:'IBM Plex Mono', monospace;font-size:0.74rem;color:var(--slate);}
+.meta-row strong{display:block;color:var(--ink);font-size:0.85rem;margin-bottom:2px;}
+section{padding:44px 0;border-bottom:1px solid var(--rule);}
+section:last-of-type{border-bottom:none;}
+section h2{font-size:1.4rem;margin-bottom:14px;}
+section p{color:var(--slate);max-width:68ch;}
+section p + p{margin-top:1em;}
+figure{margin:22px 0;}
+figure img{width:100%;height:auto;border:1px solid var(--rule);display:block;background:#fff;}
+figcaption{font-family:'IBM Plex Mono', monospace;font-size:0.74rem;color:var(--slate);margin-top:8px;text-align:center;}
+.callout{background:var(--paper-alt);border:1px solid var(--rule);padding:18px 22px;margin:18px 0;}
+.callout p{color:var(--ink);margin:0;font-size:0.94rem;}
+table.compare{width:100%;border-collapse:collapse;margin:18px 0;}
+table.compare th, table.compare td{border:1px solid var(--rule);padding:10px 14px;text-align:left;font-size:0.9rem;}
+table.compare th{background:var(--paper-alt);font-family:'IBM Plex Mono', monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--green);}
+.take-away{background:var(--ink);color:var(--paper);}
+.take-away h2{color:var(--paper);}
+.take-away .eyebrow{color:#D8B77E;}
+.take-away p{color:#C7CCD8;}
+footer{padding:26px 0;text-align:center;font-family:'IBM Plex Mono', monospace;font-size:0.72rem;color:var(--slate);background:var(--ink);}
+@media (max-width:600px){ .meta-row{gap:16px;} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="back-link">&larr; Back to portfolio</a>
+    <div class="nav-name">Brien Ihuka</div>
+  </div>
+</header>
+
+<section class="case-hero">
+  <div class="wrap">
+    <span class="eyebrow">Time Series Forecasting</span>
+    <h1>Demand Forecasting with Prophet</h1>
+    <p class="subtitle">Modeling a seasonal time series and validating forecast accuracy with rolling cross-validation, rather than trusting a single fit.</p>
+    <div class="meta-row">
+      <div><strong>Tools</strong>Python, Prophet, Pandas, Matplotlib</div>
+      <div><strong>Type</strong>Course project — DAB 401</div>
+      <div><strong>Focus</strong>Seasonality, uncertainty, validation</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The problem</h2>
+    <p>Most real demand series aren't one clean trend line — they're a trend plus a yearly cycle, plus a weekly cycle, plus the occasional spike that breaks the pattern entirely. A model that just fits a smooth curve through the data will miss all of that structure. The goal here was to use Facebook's Prophet library, which is built specifically to decompose a series into trend, yearly seasonality, and weekly seasonality, and then to actually validate that the resulting forecast holds up rather than just eyeballing the chart.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The data</h2>
+    <p>I used the Peyton Manning Wikipedia daily page-view series — the standard Prophet quick-start dataset — as a stand-in for a seasonal demand series. It runs roughly 2,964 daily observations from December 2007 to January 2016, stored as log(page views), which keeps the yearly NFL-season spikes, weekly post-game traffic bumps, and Super Bowl outliers all in one series.</p>
+    <figure>
+      <img src="images/forecast-eda.png" alt="Scatter plot of daily log page views from 2008 to 2016 showing yearly seasonal spikes and long-term trend">
+      <figcaption>Raw series — yearly NFL-season spikes are visible as recurring bands of higher activity.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Building the model</h2>
+    <p>I fit a Prophet model with yearly and weekly seasonality enabled and daily seasonality off, since the data is already daily-aggregated. Prophet's changepoint detection handles the trend shifts automatically — I didn't need to manually flag when the underlying pattern shifted.</p>
+    <figure>
+      <img src="images/forecast-prediction.png" alt="Prophet forecast plot showing observed points, predicted trend line, and shaded 80 percent uncertainty interval extending one year into the future">
+      <figcaption>One-year forecast with an 80% uncertainty band. Black dots are observed values, the line is the prediction.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Decomposing the signal</h2>
+    <p>The real value of Prophet over a simpler model is the decomposition — being able to separate the long-term trend from the recurring seasonal effects and see each one on its own.</p>
+    <figure>
+      <img src="images/forecast-components.png" alt="Prophet component decomposition showing trend, weekly seasonality, and yearly seasonality as three separate charts">
+      <figcaption>Trend, weekly, and yearly components — the yearly panel makes the NFL season clearly visible.</figcaption>
+    </figure>
+    <div class="callout">
+      <p><strong>What the decomposition showed:</strong> a rise in the trend through around 2012 followed by a gradual decline; a yearly cycle peaking October–February (NFL season) and troughing in July (off-season); and a weekly cycle peaking on Mondays (post-game traffic) and lowest on Saturdays.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Validating the forecast</h2>
+    <p>A forecast chart that looks good is easy to produce — the harder part is proving it would have held up historically. I ran rolling cross-validation: training on an initial window, forecasting forward, then sliding the window ahead and repeating, so the model is evaluated on data it never saw during that fold's training.</p>
+    <figure>
+      <img src="images/forecast-validation.png" alt="Two line charts: MAPE percent by forecast horizon in days, and prediction interval coverage by horizon compared against an 80 percent target line">
+      <figcaption>Forecast error (MAPE) and prediction-interval coverage across forecast horizons, from rolling cross-validation.</figcaption>
+    </figure>
+    <div class="callout">
+      <p><strong>Result:</strong> mean absolute percentage error of roughly 3–4% across a one-year horizon, with prediction intervals covering the true value about 82–85% of the time against an 80% target — meaning the model's stated uncertainty was well-calibrated, not just optimistic.</p>
+    </div>
+  </div>
+</section>
+
+<section class="take-away">
+  <div class="wrap">
+    <span class="eyebrow">Takeaway</span>
+    <h2>Why this matters beyond the dataset</h2>
+    <p>The specific series here is a stand-in, but the workflow transfers directly to business forecasting: decompose a demand or revenue series into trend and seasonality instead of fitting a single curve, and validate with rolling cross-validation instead of trusting an in-sample fit. A model's forecast is only as useful as your evidence that its uncertainty estimate is honest.</p>
+  </div>
+</section>
+
+<footer>&copy; 2026 Brien Ihuka</footer>
+
+</body>
+</html>

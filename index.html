@@ -6,18 +6,18 @@
 <title>Brien Ihuka — Data Analyst &amp; Accounting Professional</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#16233D;
-    --paper:#F6F4EC;
-    --paper-alt:#EDE8D9;
+    --ink:#12161F;
+    --paper:#FFFFFF;
+    --paper-alt:#F1F5FB;
+    --blue:#155EEF;
+    --blue-deep:#0A2E7A;
+    --blue-soft:#E7EFFE;
     --slate:#5B6472;
-    --brass:#A97C34;
-    --brass-dark:#8A6527;
-    --green:#33513F;
-    --rule:#D8D1BC;
-    --max:1120px;
+    --line:#E3E8F0;
+    --max:1160px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -26,222 +26,165 @@
     *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
   }
   body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    font-size:16px;
-    line-height:1.6;
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Inter', sans-serif; font-size:16px; line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{
-    font-family:'Source Serif 4', serif;
-    color:var(--ink);
-    margin:0 0 0.4em 0;
-    font-weight:600;
-    letter-spacing:-0.01em;
-  }
-  a{color:inherit;}
-  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  h1,h2,h3{ font-family:'Sora', sans-serif; color:var(--ink); margin:0 0 0.4em 0; font-weight:700; letter-spacing:-0.01em; }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 28px; }
   .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    text-transform:uppercase;
-    letter-spacing:0.14em;
-    font-size:0.72rem;
-    color:var(--brass-dark);
-    font-weight:500;
+    font-family:'Inter', sans-serif; text-transform:uppercase; letter-spacing:0.12em;
+    font-size:0.76rem; color:var(--blue); font-weight:700;
   }
 
   /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(246,244,236,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--rule);
-  }
-  .nav-inner{
-    max-width:var(--max); margin:0 auto; padding:16px 28px;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .nav-name{
-    font-family:'Source Serif 4', serif; font-weight:600; font-size:1.05rem;
-    letter-spacing:0.01em;
-  }
-  .nav-links{
-    display:flex; gap:28px; list-style:none; margin:0; padding:0;
-    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
-    text-transform:uppercase; letter-spacing:0.06em;
-  }
-  .nav-links a{
-    text-decoration:none; color:var(--slate); border-bottom:1px solid transparent;
-    padding-bottom:3px; transition:color .2s, border-color .2s;
-  }
-  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--ink); border-color:var(--brass); }
+  header.nav{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .nav-inner{ max-width:var(--max); margin:0 auto; padding:18px 28px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-name{ font-family:'Sora', sans-serif; font-weight:800; font-size:1.1rem; }
+  .nav-links{ display:flex; gap:30px; list-style:none; margin:0; padding:0; font-size:0.92rem; font-weight:500; }
+  .nav-links a{ text-decoration:none; color:var(--slate); transition:color .2s; }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--blue); }
   .nav-cta{
-    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
-    text-transform:uppercase; letter-spacing:0.06em;
-    background:var(--ink); color:var(--paper);
-    padding:9px 16px; text-decoration:none; border-radius:2px;
-    white-space:nowrap;
+    font-size:0.88rem; font-weight:600; background:var(--blue); color:#fff;
+    padding:10px 20px; text-decoration:none; border-radius:8px; white-space:nowrap;
+    transition:background .2s;
   }
-  .nav-toggle{display:none;}
-
-  @media (max-width:760px){
-    .nav-links{display:none;}
-    .nav-toggle{
-      display:block; background:none; border:1px solid var(--rule);
-      font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
-      padding:7px 12px; border-radius:2px; cursor:pointer; text-transform:uppercase;
-    }
-  }
+  .nav-cta:hover{ background:var(--blue-deep); }
+  @media (max-width:800px){ .nav-links{ display:none; } }
 
   /* ---------- HERO ---------- */
-  .hero{
-    position:relative; overflow:hidden;
-    padding:96px 0 72px;
-    background:
-      repeating-linear-gradient(
-        to bottom,
-        transparent, transparent 37px,
-        rgba(22,35,61,0.05) 37px, rgba(22,35,61,0.05) 38px
-      );
-    border-bottom:1px solid var(--rule);
+  .hero{ padding:88px 0 60px; overflow:hidden; }
+  .hero-inner{ display:grid; grid-template-columns:1.25fr 1fr; gap:56px; align-items:center; }
+  .hero h1{ font-size:clamp(2.2rem, 4.4vw, 3.3rem); line-height:1.12; margin-top:14px; }
+  .highlight{ position:relative; white-space:nowrap; }
+  .highlight span{ position:relative; z-index:1; }
+  .highlight::before{
+    content:""; position:absolute; left:-4px; right:-4px; bottom:2px; height:0.38em;
+    background:var(--blue-soft); z-index:0; border-radius:2px;
   }
-  .hero-inner{
-    display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:start;
-  }
-  .hero h1{ font-size:clamp(2.4rem, 5vw, 3.6rem); line-height:1.05; margin-top:14px;}
-  .hero .role{
-    font-size:1.15rem; color:var(--green); font-weight:500;
-    font-family:'IBM Plex Sans'; margin-bottom:18px;
-  }
-  .hero p.lede{ max-width:52ch; color:var(--slate); font-size:1.02rem; }
+  .hero .lede{ color:var(--slate); font-size:1.08rem; max-width:50ch; margin-top:18px; }
   .hero-ctas{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
   .btn{
-    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
-    text-transform:uppercase; letter-spacing:0.06em;
-    padding:12px 22px; text-decoration:none; border-radius:2px;
-    display:inline-block; transition:transform .15s ease, box-shadow .15s ease;
+    font-size:0.92rem; font-weight:600; padding:13px 24px; text-decoration:none;
+    border-radius:8px; display:inline-block; transition:transform .15s ease, background .15s ease;
   }
-  .btn-primary{ background:var(--brass); color:#fff; }
-  .btn-primary:hover{ background:var(--brass-dark); }
-  .btn-outline{ border:1px solid var(--ink); color:var(--ink); }
-  .btn-outline:hover{ background:var(--ink); color:var(--paper); }
+  .btn-primary{ background:var(--blue); color:#fff; }
+  .btn-primary:hover{ background:var(--blue-deep); }
+  .btn-outline{ border:1.5px solid var(--ink); color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:#fff; }
 
-  .stat-line{
-    display:flex; gap:26px; flex-wrap:wrap; margin-top:34px;
-    padding-top:20px; border-top:1px solid var(--rule);
+  .credibility{ margin-top:40px; padding-top:24px; border-top:1px solid var(--line); }
+  .credibility .label{ font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--slate); font-weight:600; margin-bottom:12px; }
+  .credibility .logos{ display:flex; gap:26px; flex-wrap:wrap; }
+  .credibility .logos span{ font-weight:700; color:var(--ink); font-size:0.98rem; opacity:0.72; }
+
+  .photo-wrap{ position:relative; display:flex; justify-content:center; align-items:center; }
+  .photo-blob{
+    position:absolute; width:320px; height:320px; background:var(--blue-soft);
+    border-radius:62% 38% 55% 45% / 45% 55% 45% 55%; z-index:0;
   }
-  .stat-line div{ font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:var(--slate);}
-  .stat-line strong{ display:block; color:var(--ink); font-size:0.85rem; margin-bottom:2px; }
-
-  /* seal / signature element */
-  .seal-wrap{ display:flex; justify-content:center; align-items:flex-start; padding-top:10px;}
-  .seal{ width:190px; height:190px; }
-  .seal .ring-text{ font-family:'IBM Plex Mono', monospace; font-size:9.4px; letter-spacing:2px; fill:var(--brass-dark); }
-  .seal circle.outer{ fill:none; stroke:var(--brass); stroke-width:1.2; }
-  .seal circle.inner{ fill:var(--paper-alt); stroke:var(--ink); stroke-width:1; }
-  .seal .center-text{ font-family:'Source Serif 4', serif; font-size:15px; fill:var(--ink); font-weight:600; }
-  .seal .center-sub{ font-family:'IBM Plex Mono', monospace; font-size:7.4px; fill:var(--slate); letter-spacing:1px;}
-
-  @media (max-width:760px){
+  .photo-frame{
+    position:relative; z-index:1; width:270px; height:270px; border-radius:50%;
+    overflow:hidden; border:6px solid #fff; box-shadow:0 20px 50px rgba(18,22,31,0.14);
+  }
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+  @media (max-width:800px){
     .hero-inner{ grid-template-columns:1fr; }
-    .seal-wrap{ justify-content:flex-start; padding-top:0; }
-    .seal{ width:130px; height:130px; }
+    .photo-wrap{ order:-1; }
+    .photo-blob{ width:220px; height:220px; }
+    .photo-frame{ width:190px; height:190px; }
   }
 
   /* ---------- SECTION SHELL ---------- */
-  section{ padding:76px 0; border-bottom:1px solid var(--rule); }
+  section{ padding:80px 0; border-bottom:1px solid var(--line); }
   section:last-of-type{ border-bottom:none; }
-  .section-head{ margin-bottom:38px; }
+  .section-head{ margin-bottom:40px; }
   .section-head .eyebrow{ display:block; margin-bottom:10px; }
   .fade-up{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .fade-up.in{ opacity:1; transform:translateY(0); }
 
   /* ---------- ABOUT ---------- */
-  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; }
-  .about-grid p{ color:var(--slate); max-width:56ch; margin-bottom:1em; }
-  .fact-table{ border:1px solid var(--rule); background:var(--paper-alt); }
-  .fact-row{
-    display:flex; justify-content:space-between; gap:16px;
-    padding:13px 18px; border-bottom:1px solid var(--rule);
-    font-size:0.9rem;
-  }
-  .fact-row:last-child{ border-bottom:none; }
-  .fact-row span:first-child{ color:var(--slate); font-family:'IBM Plex Mono', monospace; font-size:0.74rem; text-transform:uppercase; letter-spacing:0.05em; }
-  .fact-row span:last-child{ text-align:right; font-weight:500; }
-
-  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start; }
+  .about-grid p{ color:var(--slate); max-width:56ch; margin-bottom:1em; font-size:1.02rem; }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .stat-card{ background:var(--paper-alt); border-radius:12px; padding:22px; }
+  .stat-card .num{ font-family:'Sora', sans-serif; font-weight:800; font-size:2.1rem; color:var(--blue); line-height:1; }
+  .stat-card .label{ color:var(--slate); font-size:0.86rem; margin-top:8px; }
+  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
 
   /* ---------- SKILLS ---------- */
-  .skills-table{ width:100%; border-collapse:collapse; }
-  .skills-table tr{ border-bottom:1px solid var(--rule); }
-  .skills-table tr:first-child{ border-top:1px solid var(--rule); }
-  .skills-table td{ padding:18px 0; vertical-align:top; }
-  .skills-table td:first-child{
-    width:230px; font-family:'IBM Plex Mono', monospace; font-size:0.76rem;
-    text-transform:uppercase; letter-spacing:0.05em; color:var(--green); font-weight:500;
-    padding-right:24px;
-  }
-  .skills-table td:last-child{ color:var(--ink); }
+  .skills-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; }
+  .skill-card{ border:1px solid var(--line); border-radius:12px; padding:26px; }
+  .skill-card h3{ font-size:1.05rem; color:var(--blue); margin-bottom:14px; }
   .tag{
-    display:inline-block; background:var(--paper-alt); border:1px solid var(--rule);
-    padding:4px 10px; margin:3px 6px 3px 0; border-radius:2px; font-size:0.84rem;
+    display:inline-block; background:var(--paper-alt); border:1px solid var(--line);
+    padding:5px 12px; margin:3px 6px 3px 0; border-radius:999px; font-size:0.84rem;
   }
-  @media (max-width:600px){
-    .skills-table td:first-child{ display:block; width:auto; padding-bottom:6px; }
-    .skills-table tr{ display:block; padding:14px 0; }
-    .skills-table td{ display:block; padding:2px 0; }
-  }
+  @media (max-width:700px){ .skills-grid{ grid-template-columns:1fr; } }
 
   /* ---------- EXPERIENCE ---------- */
-  .xp-item{ display:grid; grid-template-columns:56px 1fr; gap:22px; padding:26px 0; border-top:1px solid var(--rule); }
+  .xp-item{ display:grid; grid-template-columns:56px 1fr; gap:22px; padding:28px 0; border-top:1px solid var(--line); }
   .xp-item:first-child{ border-top:none; }
-  .xp-num{ font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:0.95rem; padding-top:4px; }
+  .xp-num{
+    width:40px; height:40px; border-radius:50%; background:var(--blue-soft); color:var(--blue-deep);
+    display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif; font-weight:700; font-size:0.95rem;
+  }
   .xp-head{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
-  .xp-role{ font-weight:600; font-size:1.05rem; }
-  .xp-org{ color:var(--green); font-weight:500; }
-  .xp-dates{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--slate); }
+  .xp-role{ font-weight:700; font-size:1.08rem; }
+  .xp-org{ color:var(--blue); font-weight:600; }
+  .xp-dates{ font-size:0.86rem; color:var(--slate); font-weight:500; }
   .xp-item ul{ margin:8px 0 0 0; padding-left:18px; color:var(--slate); }
   .xp-item li{ margin-bottom:4px; }
   .edit-flag{
-    display:inline-block; margin-top:8px; font-family:'IBM Plex Mono', monospace;
-    font-size:0.68rem; color:var(--brass-dark); background:#F1E6D3; padding:3px 8px; border-radius:2px;
+    display:inline-block; margin-top:8px; font-size:0.72rem; font-weight:600; color:var(--blue-deep);
+    background:var(--blue-soft); padding:4px 10px; border-radius:999px;
   }
   @media (max-width:600px){ .xp-item{ grid-template-columns:1fr; } .xp-num{ display:none; } }
 
   /* ---------- PROJECTS ---------- */
-  .proj-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:22px; }
+  .proj-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:24px; }
   .proj-card{
-    border:1px solid var(--rule); background:var(--paper-alt);
-    padding:26px; display:flex; flex-direction:column; height:100%;
+    border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    display:flex; flex-direction:column; height:100%; transition:transform .18s ease, box-shadow .18s ease;
   }
-  .proj-cat{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--brass-dark); margin-bottom:10px;}
-  .proj-card h3{ font-size:1.15rem; margin-bottom:8px; }
-  .proj-card p{ color:var(--slate); font-size:0.92rem; flex-grow:1; }
-  .proj-tags{ margin:14px 0 4px; }
-  .proj-card .btn-outline{ margin-top:14px; text-align:center; font-size:0.72rem; padding:10px 16px; align-self:flex-start; }
-  @media (max-width:900px){ .proj-grid{ grid-template-columns:1fr; } }
+  .proj-card:hover{ transform:translateY(-3px); box-shadow:0 16px 32px rgba(18,22,31,0.08); }
+  .proj-thumb{
+    height:110px; display:flex; align-items:center; padding:0 22px;
+    font-family:'Sora', sans-serif; font-weight:700; color:#fff; font-size:0.82rem;
+    text-transform:uppercase; letter-spacing:0.08em;
+  }
+  .proj-thumb.t1{ background:linear-gradient(135deg,#155EEF,#0A2E7A); }
+  .proj-thumb.t2{ background:linear-gradient(135deg,#0EA5A8,#0A2E7A); }
+  .proj-thumb.t3{ background:linear-gradient(135deg,#4C6FEF,#155EEF); }
+  .proj-thumb.t4{ background:linear-gradient(135deg,#0A2E7A,#0EA5A8); }
+  .proj-thumb.t5{ background:linear-gradient(135deg,#155EEF,#4C6FEF); }
+  .proj-body{ padding:22px; display:flex; flex-direction:column; flex-grow:1; }
+  .proj-body h3{ font-size:1.12rem; margin-bottom:8px; }
+  .proj-body p{ color:var(--slate); font-size:0.92rem; flex-grow:1; }
+  .proj-tags{ margin:14px 0 6px; }
+  .proj-body .btn-outline{ margin-top:14px; text-align:center; font-size:0.82rem; padding:10px 18px; align-self:flex-start; border-radius:8px; }
 
   /* ---------- EDUCATION ---------- */
-  .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
-  .edu-card{ border-left:3px solid var(--brass); padding-left:20px; }
-  .edu-card .eyebrow{ margin-bottom:6px; }
+  .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .edu-card{ background:var(--paper-alt); border-radius:12px; padding:22px; }
+  .edu-card .eyebrow{ margin-bottom:8px; }
   .edu-card h3{ font-size:1.05rem; margin-bottom:4px; }
   .edu-card p{ color:var(--slate); margin:0; font-size:0.92rem; }
   @media (max-width:700px){ .edu-grid{ grid-template-columns:1fr; } }
 
   /* ---------- CONTACT ---------- */
-  .contact{ background:var(--ink); color:var(--paper); border-bottom:none; }
-  .contact h2{ color:var(--paper); }
-  .contact .eyebrow{ color:#D8B77E; }
-  .contact p{ color:#C7CCD8; max-width:52ch; }
+  .contact{ background:var(--blue-deep); color:#fff; border-bottom:none; }
+  .contact h2{ color:#fff; }
+  .contact .eyebrow{ color:#8FB4FF; }
+  .contact p{ color:#C7D6F5; max-width:52ch; font-size:1.02rem; }
   .contact-row{ display:flex; gap:16px; flex-wrap:wrap; margin-top:28px; }
-  .contact .btn-primary{ background:var(--brass); }
-  .contact .btn-outline{ border-color:var(--paper); color:var(--paper); }
-  .contact .btn-outline:hover{ background:var(--paper); color:var(--ink); }
+  .contact .btn-primary{ background:#fff; color:var(--blue-deep); }
+  .contact .btn-primary:hover{ background:var(--blue-soft); }
+  .contact .btn-outline{ border-color:#fff; color:#fff; }
+  .contact .btn-outline:hover{ background:#fff; color:var(--blue-deep); }
 
-  footer{ padding:26px 0; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--slate); background:var(--ink); }
+  footer{ padding:28px 0; text-align:center; font-size:0.85rem; color:var(--slate); background:var(--paper-alt); }
 </style>
 </head>
 <body>
@@ -265,31 +208,27 @@
   <div class="wrap hero-inner">
     <div>
       <span class="eyebrow">Windsor, Ontario · Open to relocation</span>
-      <h1>Brien Ihuka</h1>
-      <div class="role">Data Analyst &amp; Accounting Professional</div>
-      <p class="lede">I bridge accounting rigor with data analytics — turning ledgers, reconciliations, and raw datasets into numbers people can act on. Currently completing a Graduate Diploma in Data Analytics for Business.</p>
+      <h1>I turn financial data into <span class="highlight"><span>decisions</span></span> people can act on.</h1>
+      <p class="lede">I'm Brien Ihuka — a data analyst and accounting professional bridging the gap between the ledger and the dashboard. Currently completing a Graduate Diploma in Data Analytics for Business.</p>
       <div class="hero-ctas">
         <a href="#" class="btn btn-primary">View résumé</a>
         <a href="#contact" class="btn btn-outline">Get in touch</a>
       </div>
-      <div class="stat-line">
-        <div><strong>BSc Accounting</strong>Babcock University</div>
-        <div><strong>Data Analytics</strong>Grad. Diploma, '26</div>
-        <div><strong>4+ employers</strong>Accounting &amp; finance</div>
-        <div><strong>Based in</strong>Windsor, Ontario</div>
+      <div class="credibility">
+        <div class="label">Experience across</div>
+        <div class="logos">
+          <span>Grant Thornton</span>
+          <span>Intuit Canada</span>
+          <span>Amcon</span>
+          <span>Dominion Masonry</span>
+        </div>
       </div>
     </div>
-    <div class="seal-wrap">
-      <svg class="seal" viewBox="0 0 200 200">
-        <circle class="outer" cx="100" cy="100" r="92"></circle>
-        <circle class="inner" cx="100" cy="100" r="72"></circle>
-        <path id="ringPath" d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0" fill="none"></path>
-        <text class="ring-text">
-          <textPath href="#ringPath" startOffset="0%">DATA ANALYST &#8226; ACCOUNTING &#8226; FINANCIAL ANALYSIS &#8226; </textPath>
-        </text>
-        <text x="100" y="96" text-anchor="middle" class="center-text">B.I.</text>
-        <text x="100" y="114" text-anchor="middle" class="center-sub">EST. 2026</text>
-      </svg>
+    <div class="photo-wrap">
+      <div class="photo-blob"></div>
+      <div class="photo-frame">
+        <img src="images/headshot.png" alt="Portrait of Brien Ihuka">
+      </div>
     </div>
   </div>
 </section>
@@ -302,12 +241,11 @@
       <p>My background started in accounting: audit support, tax preparation, and financial analysis across firms including Grant Thornton and Intuit Canada. Along the way I kept finding that the most useful part of the job was making sense of the numbers, not just recording them — so I'm now formalizing that instinct with a Graduate Diploma in Data Analytics for Business.</p>
       <p>I'm comfortable moving between a general ledger and a SQL query, and I care about the same thing in both: accuracy that someone can build a decision on. I'm currently interviewing for accounting, finance, and analytics-adjacent roles across Canada.</p>
     </div>
-    <div class="fact-table fade-up">
-      <div class="fact-row"><span>Location</span><span>Windsor, ON</span></div>
-      <div class="fact-row"><span>Status</span><span>Open to relocation</span></div>
-      <div class="fact-row"><span>Education</span><span>BSc Accounting</span></div>
-      <div class="fact-row"><span>In progress</span><span>Data Analytics Dip.</span></div>
-      <div class="fact-row"><span>Core tools</span><span>Excel, SQL, QuickBooks</span></div>
+    <div class="stat-grid fade-up">
+      <div class="stat-card"><div class="num">4+</div><div class="label">Employers in accounting &amp; finance</div></div>
+      <div class="stat-card"><div class="num">'26</div><div class="label">Data Analytics Grad. Diploma</div></div>
+      <div class="stat-card"><div class="num">5</div><div class="label">Real projects &amp; case studies</div></div>
+      <div class="stat-card"><div class="num">ON</div><div class="label">Based in Windsor, open to relocate</div></div>
     </div>
   </div>
 </section>
@@ -318,49 +256,42 @@
       <span class="eyebrow">Skills</span>
       <h2>What I bring to the table</h2>
     </div>
-    <table class="skills-table fade-up">
-      <tr>
-        <td>Accounting &amp; Finance</td>
-        <td>
-          <span class="tag">Financial reporting</span>
-          <span class="tag">Tax preparation</span>
-          <span class="tag">Reconciliations</span>
-          <span class="tag">Audit support</span>
-          <span class="tag">QuickBooks</span>
-          <span class="tag">SAP</span>
-          <span class="tag">Microsoft Dynamics GP</span>
-          <span class="tag">Intuit TurboTax</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Data &amp; Analytics</td>
-        <td>
-          <span class="tag">Advanced Excel</span>
-          <span class="tag">SQL</span>
-          <span class="tag">Power BI</span>
-          <span class="tag">Data cleaning</span>
-          <span class="tag">Statistical analysis</span>
-          <span class="tag">Dashboarding</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Business Tools</td>
-        <td>
-          <span class="tag">Microsoft Office</span>
-          <span class="tag">Google Workspace</span>
-          <span class="tag">ERP systems</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Professional</td>
-        <td>
-          <span class="tag">Client communication</span>
-          <span class="tag">Process improvement</span>
-          <span class="tag">Cross-functional collaboration</span>
-          <span class="tag">Attention to detail</span>
-        </td>
-      </tr>
-    </table>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <h3>Accounting &amp; Finance</h3>
+        <span class="tag">Financial reporting</span>
+        <span class="tag">Tax preparation</span>
+        <span class="tag">Reconciliations</span>
+        <span class="tag">Audit support</span>
+        <span class="tag">QuickBooks</span>
+        <span class="tag">SAP</span>
+        <span class="tag">Microsoft Dynamics GP</span>
+        <span class="tag">Intuit TurboTax</span>
+      </div>
+      <div class="skill-card fade-up">
+        <h3>Data &amp; Analytics</h3>
+        <span class="tag">Advanced Excel</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">Data cleaning</span>
+        <span class="tag">Statistical analysis</span>
+        <span class="tag">Dashboarding</span>
+        <span class="tag">Python</span>
+      </div>
+      <div class="skill-card fade-up">
+        <h3>Business Tools</h3>
+        <span class="tag">Microsoft Office</span>
+        <span class="tag">Google Workspace</span>
+        <span class="tag">ERP systems</span>
+      </div>
+      <div class="skill-card fade-up">
+        <h3>Professional</h3>
+        <span class="tag">Client communication</span>
+        <span class="tag">Process improvement</span>
+        <span class="tag">Cross-functional collaboration</span>
+        <span class="tag">Attention to detail</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -441,49 +372,59 @@
     </div>
     <div class="proj-grid">
       <div class="proj-card fade-up">
-        <div class="proj-cat">Capstone Project</div>
-        <h3>CO₂ Emissions vs. Renewable Energy</h3>
-        <p>Merged global CO₂ emissions data with renewable energy consumption (1990–2022) into a single country-year dataset, then built baseline ML models to explore the relationship between the two and deployed the results as a Streamlit app.</p>
-        <div class="proj-tags">
-          <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Streamlit</span>
+        <div class="proj-thumb t1">Capstone Project</div>
+        <div class="proj-body">
+          <h3>CO₂ Emissions vs. Renewable Energy</h3>
+          <p>Merged global CO₂ emissions data with renewable energy consumption (1990–2022) into a single country-year dataset, then built baseline ML models and deployed the results as a Streamlit app.</p>
+          <div class="proj-tags">
+            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Streamlit</span>
+          </div>
+          <a href="https://github.com/briensan/World-CO-Emissions" target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
         </div>
-        <a href="https://github.com/briensan/World-CO-Emissions" target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
       </div>
       <div class="proj-card fade-up">
-        <div class="proj-cat">Financial Analysis</div>
-        <h3>Cross-Industry Financial Benchmarking</h3>
-        <p>Compared Pfizer, Ford, and Apple across gross margin, net margin, ROA, and inventory turnover to evaluate efficiency and cost control by sector — tech led on profitability, auto on scale, pharma stayed balanced.</p>
-        <div class="proj-tags">
-          <span class="tag">Financial analysis</span><span class="tag">Excel</span>
+        <div class="proj-thumb t2">Financial Analysis</div>
+        <div class="proj-body">
+          <h3>Cross-Industry Financial Benchmarking</h3>
+          <p>Compared Pfizer, Ford, and Apple across margin, ROA, and inventory turnover to evaluate efficiency and cost control by sector.</p>
+          <div class="proj-tags">
+            <span class="tag">Financial analysis</span><span class="tag">Excel</span>
+          </div>
+          <a href="case-study-financial-benchmarking.html" class="btn btn-outline">View case study</a>
         </div>
-        <a href="case-study-financial-benchmarking.html" class="btn btn-outline">View case study</a>
       </div>
       <div class="proj-card fade-up">
-        <div class="proj-cat">Time Series Forecasting</div>
-        <h3>Demand Forecasting with Prophet</h3>
-        <p>Built a Prophet forecasting model with trend, weekly, and yearly seasonality components, then validated it with rolling cross-validation — landing at roughly 3–4% MAPE with well-calibrated 80% prediction intervals over a 1-year horizon.</p>
-        <div class="proj-tags">
-          <span class="tag">Python</span><span class="tag">Prophet</span><span class="tag">Forecasting</span>
+        <div class="proj-thumb t3">Time Series Forecasting</div>
+        <div class="proj-body">
+          <h3>Demand Forecasting with Prophet</h3>
+          <p>Built a Prophet forecasting model with seasonality components, validated with rolling cross-validation — roughly 3–4% MAPE over a 1-year horizon.</p>
+          <div class="proj-tags">
+            <span class="tag">Python</span><span class="tag">Prophet</span>
+          </div>
+          <a href="case-study-forecasting.html" class="btn btn-outline">View case study</a>
         </div>
-        <a href="case-study-forecasting.html" class="btn btn-outline">View case study</a>
       </div>
       <div class="proj-card fade-up">
-        <div class="proj-cat">Excel / BI</div>
-        <h3>Sales Performance Dashboard</h3>
-        <p>An interactive Excel dashboard built on the Superstore sales dataset, tracking performance across products, regions, and time to support faster, clearer sales decisions.</p>
-        <div class="proj-tags">
-          <span class="tag">Excel</span><span class="tag">Dashboarding</span>
+        <div class="proj-thumb t4">Excel / BI</div>
+        <div class="proj-body">
+          <h3>Sales Performance Dashboard</h3>
+          <p>An interactive Excel dashboard built on the Superstore sales dataset, tracking performance across products, regions, and time.</p>
+          <div class="proj-tags">
+            <span class="tag">Excel</span><span class="tag">Dashboarding</span>
+          </div>
+          <a href="https://github.com/briensan/Excel---Sales-Performance-Dashboard.xlsx" target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
         </div>
-        <a href="https://github.com/briensan/Excel---Sales-Performance-Dashboard.xlsx" target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
       </div>
       <div class="proj-card fade-up">
-        <div class="proj-cat">Applied Fundamentals</div>
-        <h3>Neural Networks from First Principles</h3>
-        <p>Hand-built the math behind fully-connected networks — forward passes, parameter counts, and gradient descent variants — in NumPy and PyTorch, to understand what's actually happening underneath higher-level ML libraries.</p>
-        <div class="proj-tags">
-          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">NumPy</span>
+        <div class="proj-thumb t5">Applied Fundamentals</div>
+        <div class="proj-body">
+          <h3>Neural Networks from First Principles</h3>
+          <p>Hand-built the math behind fully-connected networks — forward passes, parameter counts, and gradient descent variants — in NumPy and PyTorch.</p>
+          <div class="proj-tags">
+            <span class="tag">Python</span><span class="tag">PyTorch</span>
+          </div>
+          <a href="case-study-neural-networks.html" class="btn btn-outline">View case study</a>
         </div>
-        <a href="case-study-neural-networks.html" class="btn btn-outline">View case study</a>
       </div>
     </div>
   </div>
@@ -521,17 +462,15 @@
     <h2>Let's talk</h2>
     <p>I'm actively interviewing for accounting, finance, and data analytics roles across Canada, and open to relocation. The fastest way to reach me is email.</p>
     <div class="contact-row">
-      <a href="mailto:your.email@example.com" class="btn btn-primary">your.email@example.com</a>
-      <a href="#" class="btn btn-outline">LinkedIn</a>
+      <a href="mailto:brienihuka@gmail.com" class="btn btn-primary">brienihuka@gmail.com</a>
+      <a href="https://www.linkedin.com/in/brien-ihuka-917806210/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
     </div>
   </div>
 </section>
 
-<footer>&copy; 2026 Brien Ihuka — Built with intent, not templates.</footer>
+<footer>&copy; 2026 Brien Ihuka</footer>
 
 <script>
-  // mobile nav is intentionally simple/hidden on small screens per CSS;
-  // scroll-triggered fade-ins:
   const els = document.querySelectorAll('.fade-up');
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{

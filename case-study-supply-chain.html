@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — FreshBite Supply Chain Analysis | Brien Ihuka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#12161F;--paper:#FFFFFF;--paper-alt:#F1F5FB;--slate:#5B6472;--blue:#155EEF;--blue-deep:#0A2E7A;--green:#0A2E7A;--line:#E3E8F0;--max:820px;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter', sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Sora', sans-serif;color:var(--ink);margin:0 0 0.4em 0;font-weight:700;letter-spacing:-0.01em;}
+a{color:var(--blue-deep);}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+.eyebrow{font-family:'Inter', sans-serif;text-transform:uppercase;letter-spacing:0.12em;font-size:0.76rem;color:var(--blue);font-weight:700;}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;}
+.back-link{font-size:0.9rem;font-weight:600;text-decoration:none;color:var(--slate);}
+.back-link:hover{color:var(--ink);}
+.nav-name{font-family:'Sora', sans-serif;font-weight:800;font-size:1.02rem;}
+.case-hero{padding:56px 0 40px;border-bottom:1px solid var(--line);}
+.case-hero h1{font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.1;margin-top:12px;}
+.case-hero .subtitle{color:var(--slate);font-size:1.05rem;max-width:56ch;margin-top:6px;}
+.meta-row{display:flex;gap:26px;flex-wrap:wrap;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);}
+.meta-row div{font-size:0.86rem;color:var(--slate);}
+.meta-row strong{display:block;color:var(--ink);font-size:0.92rem;margin-bottom:2px;}
+section{padding:44px 0;border-bottom:1px solid var(--line);}
+section:last-of-type{border-bottom:none;}
+section h2{font-size:1.4rem;margin-bottom:14px;}
+section p{color:var(--slate);max-width:68ch;}
+section p + p{margin-top:1em;}
+figure{margin:22px 0;}
+figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;display:block;background:#fff;}
+figcaption{font-size:0.84rem;color:var(--slate);margin-top:8px;text-align:center;}
+.callout{background:var(--paper-alt);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:18px 0;}
+.callout p{color:var(--ink);margin:0;font-size:0.94rem;}
+.tag{display:inline-block;background:var(--paper-alt);border:1px solid var(--line);padding:5px 12px;margin:3px 6px 3px 0;border-radius:999px;font-size:0.84rem;}
+table.compare{width:100%;border-collapse:collapse;margin:18px 0;}
+table.compare th, table.compare td{border:1px solid var(--line);padding:10px 14px;text-align:left;font-size:0.88rem;vertical-align:top;}
+table.compare th{background:var(--paper-alt);font-family:'Inter', sans-serif;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--blue-deep);}
+.priority-high{color:#C0392B;font-weight:700;}
+.priority-med{color:#B7791F;font-weight:700;}
+.priority-low{color:var(--slate);font-weight:700;}
+.take-away{background:var(--blue-deep);color:#fff;}
+.take-away h2{color:#fff;}
+.take-away .eyebrow{color:#8FB4FF;}
+.take-away p{color:#C7D6F5;}
+footer{padding:26px 0;text-align:center;font-size:0.85rem;color:var(--slate);background:var(--paper-alt);}
+@media (max-width:600px){ .meta-row{gap:16px;} table.compare{font-size:0.8rem;} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="back-link">&larr; Back to portfolio</a>
+    <div class="nav-name">Brien Ihuka</div>
+  </div>
+</header>
+
+<section class="case-hero">
+  <div class="wrap">
+    <span class="eyebrow">Supply Chain Analytics</span>
+    <h1>FreshBite Supply Chain Analysis</h1>
+    <p class="subtitle">Forecasting, profit optimization, and inventory classification for a five-product food company with a constrained supply chain.</p>
+    <div class="meta-row">
+      <div><strong>Methods</strong>Demand forecasting, linear programming, ABC analysis</div>
+      <div><strong>Tools</strong>Excel, Solver</div>
+      <div><strong>Deliverable</strong>Strategic recommendations report</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The brief</h2>
+    <p>FreshBite operates a five-product portfolio — Frozen Meals, Salad Kits, Snack Packs, Beverages, and Desserts — across a supply chain constrained by labor hours, storage capacity, and budget. The task was to apply three analytical frameworks — demand forecasting, linear programming optimization, and ABC inventory classification — to identify operational inefficiencies and recommend data-driven actions to improve profitability and reliability.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Demand forecasting</h2>
+    <p>Twelve months of historical demand were used to forecast Month 13 for all five SKUs, comparing a 3-month moving average (MA3) against exponential smoothing (ES, &alpha; = 0.3).</p>
+    <figure>
+      <img src="images/fb-demand-trend.png" alt="Line chart of 12-month historical demand for five FreshBite products, showing four products trending upward and Desserts trending downward">
+      <figcaption>12-month historical demand — four products trending up, Desserts trending down.</figcaption>
+    </figure>
+    <table class="compare">
+      <tr><th>Product</th><th>Trend</th><th>Forecast M13</th><th>Method used</th></tr>
+      <tr><td>P1 — Frozen Meals</td><td>Growing</td><td>180</td><td>MA3</td></tr>
+      <tr><td>P2 — Salad Kits</td><td>Growing</td><td>280</td><td>MA3</td></tr>
+      <tr><td>P3 — Snack Packs</td><td>Growing</td><td>140</td><td>MA3</td></tr>
+      <tr><td>P4 — Beverages</td><td>Growing</td><td>400</td><td>MA3</td></tr>
+      <tr><td>P5 — Desserts</td><td>Declining</td><td>106</td><td>ES (&alpha;=0.3)</td></tr>
+    </table>
+    <div class="callout">
+      <p><strong>Why two methods:</strong> MA3 smooths out noise and works best for products with a stable, steady growth pattern. ES reacts faster to recent changes, which matters more for Desserts — where demand has fallen 37% over 12 months and a slower-reacting average would understate how serious the decline is.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Profit optimization (linear programming)</h2>
+    <p>An LP model was built to maximize total profit subject to three constraints: 2,000 total labor hours, 2,000 units of storage capacity, and a $10,000 production budget. Solver determined the optimal production mix.</p>
+    <figure>
+      <img src="images/fb-optimization.png" alt="Two bar charts showing optimal units to produce and total profit contribution per product, with Salad Kits and Desserts excluded at zero units">
+      <figcaption>Optimal mix: Frozen Meals, Snack Packs, and Beverages produced at capacity; Salad Kits and Desserts excluded.</figcaption>
+    </figure>
+    <div class="callout">
+      <p><strong>Key result:</strong> labor is the single binding constraint — all 2,000 hours are consumed by the optimal plan, which generates $9,040 in total profit. Salad Kits and Desserts are excluded entirely, not because they're unprofitable, but because their profit-per-labor-hour ratio loses out to the other three products competing for the same limited hours. The $10,000 budget was never fully used, meaning the business has room to invest surplus cash in expanding labor capacity rather than more raw materials.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>ABC inventory classification</h2>
+    <p>Each product was ranked by annual revenue contribution (units sold &times; profit per unit) and grouped into A/B/C categories to set inventory management priorities.</p>
+    <figure>
+      <img src="images/fb-abc-pareto.png" alt="Pareto chart showing annual revenue by product as bars and cumulative revenue percentage as a line, with products labeled by ABC category">
+      <figcaption>Class A (Salad Kits, Beverages) drives 52% of revenue from just 2 of 5 SKUs.</figcaption>
+    </figure>
+    <table class="compare">
+      <tr><th>Class</th><th>Products</th><th>% of Revenue</th><th>Strategy</th></tr>
+      <tr><td>A</td><td>Salad Kits, Beverages</td><td>52.0%</td><td>Tight control, real-time tracking, safety stock</td></tr>
+      <tr><td>B</td><td>Frozen Meals, Desserts</td><td>37.4%</td><td>Periodic review, standard stock levels</td></tr>
+      <tr><td>C</td><td>Snack Packs</td><td>10.5%</td><td>Bulk order, simplify replenishment</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Strategic recommendations</h2>
+    <table class="compare">
+      <tr><th>Recommendation</th><th>Rationale</th><th>Priority</th></tr>
+      <tr><td>Expand labor capacity by 200–300 hrs</td><td>Labor is the only binding constraint; unlocks an est. $1,000–1,500/month in added profit</td><td class="priority-high">High</td></tr>
+      <tr><td>Prioritize Class A inventory (Salad Kits, Beverages)</td><td>52% of revenue from 2 SKUs — real-time tracking and safety stock warranted</td><td class="priority-high">High</td></tr>
+      <tr><td>Investigate the Desserts decline</td><td>Demand down 37% in 12 months — needs root-cause analysis before next procurement cycle</td><td class="priority-med">Medium</td></tr>
+      <tr><td>Improve labor efficiency for Salad Kits &amp; Desserts</td><td>Both excluded from the optimal mix due to low profit-per-hour — process or outsourcing fix could change that</td><td class="priority-med">Medium</td></tr>
+      <tr><td>Simplify Snack Packs replenishment</td><td>Only 10.5% of revenue — move to single bulk-order contract</td><td class="priority-low">Low</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="take-away">
+  <div class="wrap">
+    <span class="eyebrow">Takeaway</span>
+    <h2>The constraint was labor, not budget</h2>
+    <p>The most counter-intuitive finding was the one that mattered most: FreshBite had budget headroom the whole time — the real ceiling was labor hours. That's the value of running the numbers instead of assuming the obvious constraint (money) is the real one. Implementing these recommendations was projected to increase monthly profit by an estimated 15–20% within one quarter.</p>
+  </div>
+</section>
+
+<footer>&copy; 2026 Brien Ihuka</footer>
+
+</body>
+</html>
